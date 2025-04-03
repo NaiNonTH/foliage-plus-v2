@@ -1,0 +1,67 @@
+{
+    "bowl": {
+        "model": {
+            "template": {
+                "parent": "templates/$template",
+                "textures": {
+                    "0": "block/$name"
+                }
+            }
+        },
+        "blockstate": {
+            "multipart": [
+                {"apply": [{"model": "block/$name"}]},
+                {"apply": [{"model": "block/f_$name"}]}
+            ]
+        },
+        "blocks": [
+            "dead_bush",
+            "azure_bluet"
+        ]
+    },
+    "tinted_bowl": {
+        "all": "bowl",
+        "blocks": [
+            "short_grass"
+        ]
+    },
+    "flowers": {
+        "model": "bowl",
+        "blocks": [
+            "dandelion",
+            "poppy",
+            "blue_orchid",
+            "allium",
+            "azure_bluet",
+            "red_tulip",
+            "orange_tulip",
+            "white_tulip",
+            "pink_tulip",
+            "oxeye_daisy",
+            "cornflower",
+            "lily_of_the_valley",
+            "wither_rose"
+        ],
+        "blockstate": {
+            "multipart": [
+                {"apply": [{"model": "block/$name"}]},
+                {"apply": [
+                    {"model": "block/f_$name"},
+                    {"model": "block/air", "weight": 2}
+                ]},
+                {"apply": [
+                    {"model": "block/f_$name", "y": 90},
+                    {"model": "block/air", "weight": 3}
+                ]},
+                {"apply": [
+                    {"model": "block/f_$name", "y": 180},
+                    {"model": "block/air", "weight": 4}
+                ]},
+                {"apply": [
+                    {"model": "block/f_$name", "y": 270},
+                    {"model": "block/air", "weight": 5}
+                ]}
+            ]
+        }
+    }
+}
