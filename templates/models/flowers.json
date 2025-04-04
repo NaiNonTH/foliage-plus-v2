@@ -6,8 +6,8 @@
 	},
 	"elements": [
 		{
-			"from": [-5, 0, 5],
-			"to": [7, 12, 5],
+			"from": [-3, 0, 5],
+			"to": [9, 12, 5],
 			"shade": false,
 			"rotation": {"angle": -22.5, "axis": "y", "origin": [0, 0, 5]},
 			"faces": {

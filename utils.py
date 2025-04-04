@@ -7,7 +7,7 @@ def get_file_name(str: str):
 def write_model(model, block_name, template):
     model_name, model_template = render_name_and_template(model, template=template, name=block_name)
 
-    with open(f"pack/assets/minecraft/models/block/f_{model_name}.json", "w") as writer:
+    with open(f"pack/assets/minecraft/models/block/{model_name}.json", "w") as writer:
         writer.write(model_template)
 
 def write_blockstate(blockstate, block_name, **kwargs):

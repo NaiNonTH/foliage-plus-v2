@@ -1,32 +1,59 @@
 {
     "bowl": {
-        "models": {
+        "blocks": [
+            "dead_bush",
+            "azure_bluet"
+        ],
+        "models": [{
+            "name": "f_%name%",
             "template": {
                 "parent": "templates/%template%",
                 "textures": {
                     "0": "block/%name%"
                 }
             }
-        },
+        }],
         "blockstate": {
             "multipart": [
                 {"apply": [{"model": "block/%name%"}]},
                 {"apply": [{"model": "block/f_%name%"}]}
             ]
-        },
-        "blocks": [
-            "dead_bush",
-            "azure_bluet"
-        ]
+        }
     },
     "tinted_bowl": {
-        "all": "bowl",
-        "blocks": [
-            "short_grass"
-        ]
+        "blocks": ["short_grass"],
+        "all": "bowl"
+    },
+    "tall_grass_bottom": {
+        "blocks": ["tall_grass"],
+        "models": [{
+            "name": "f_%name%_bottom",
+            "template": {
+                "parent": "templates/%template%",
+                "textures": {
+                    "0": "block/%name%_bottom",
+                    "1": "block/%name%_top"
+                }
+            }
+        }],
+        "blockstate": {
+            "multipart": [
+                {
+                    "when": {"half": "lower"},
+                    "apply": [{"model": "block/%name%_bottom"}]
+                },
+                {
+                    "when": {"half": "lower"},
+                    "apply": [{"model": "block/f_%name%_bottom"}]
+                },
+                {
+                    "when": {"half": "upper"},
+                    "apply": [{"model": "block/%name%_top"}]
+                }
+            ]
+        }
     },
     "flowers": {
-        "models": "bowl",
         "blocks": [
             "dandelion",
             "poppy",
@@ -41,6 +68,7 @@
             "lily_of_the_valley",
             "wither_rose"
         ],
+        "models": "bowl",
         "blockstate": {
             "multipart": [
                 {"apply": [{"model": "block/%name%"}]},
@@ -60,6 +88,149 @@
                     {"model": "block/f_%name%", "y": 270},
                     {"model": "block/air", "weight": 5}
                 ]}
+            ]
+        }
+    },
+    "leaves_part": {
+        "blocks": [
+            "oak_leaves",
+            "spruce_leaves",
+            "birch_leaves",
+            "jungle_leaves",
+            "acacia_leaves",
+            "dark_oak_leaves",
+            "pale_oak_leaves",
+            "azalea_leaves",
+            "flowering_azalea_leaves",
+            "mangrove_leaves",
+            "cherry_leaves"
+        ],
+        "models": [{
+            "name": "%name%_part",
+            "template": {
+                "parent": "templates/%template%",
+                "textures": {
+                    "0": "block/%name%"
+                }
+            }
+        }],
+        "blockstate": {
+            "multipart": [
+                {"apply": [{"model": "block/%name%"}]},
+                {"apply": [
+                    {"model": "block/%name%_part", "weight": 2},
+                    {"model": "block/air"}
+                ]},
+                {"apply": [
+                    {"model": "block/%name%_part", "weight": 3, "y": 90},
+                    {"model": "block/air"}
+                ]},
+                {"apply": [
+                    {"model": "block/%name%_part", "weight": 4, "y": 180},
+                    {"model": "block/air"}
+                ]},
+                {"apply": [
+                    {"model": "block/%name%_part", "weight": 4, "y": 270},
+                    {"model": "block/air"}
+                ]},
+                {"apply": [
+                    {"model": "block/%name%_part", "weight": 3, "x": 90},
+                    {"model": "block/air"}
+                ]},
+                {"apply": [
+                    {"model": "block/%name%_part", "weight": 2, "x": 270},
+                    {"model": "block/air"}
+                ]}
+            ]
+        }
+    },
+    "sugar_cane": {
+        "models": [{
+            "template": {
+                "parent": "templates/%template%",
+                "textures": {
+                    "0": "block/%name%"
+                }
+            }
+        }],
+        "blocks": ["sugar_cane"]
+    },
+    "bush": {
+        "blocks": [
+            "sweet_berry_bush"
+        ],
+        "models": [
+            {
+                "name": "f_%name%_stage0",
+                "template": {
+                    "parent": "templates/%template%",
+                    "textures": {
+                        "0": "block/%name%_stage0"
+                    }
+                }
+            },
+            {
+                "name": "f_%name%_stage1",
+                "template": {
+                    "parent": "templates/%template%",
+                    "textures": {
+                        "0": "block/%name%_stage1"
+                    }
+                }
+            },
+            {
+                "name": "f_%name%_stage2",
+                "template": {
+                    "parent": "templates/%template%",
+                    "textures": {
+                        "0": "block/%name%_stage2"
+                    }
+                }
+            },
+            {
+                "name": "f_%name%_stage3",
+                "template": {
+                    "parent": "templates/%template%",
+                    "textures": {
+                        "0": "block/%name%_stage3"
+                    }
+                }
+            }
+        ],
+        "blockstate": {
+            "multipart": [
+                {
+                    "when": {"age": 0},
+                    "apply": [{"model": "block/%name%_stage0"}]
+                },
+                {
+                    "when": {"age": 0},
+                    "apply": [{"model": "block/f_%name%_stage0"}]
+                },
+                {
+                    "when": {"age": 1},
+                    "apply": [{"model": "block/%name%_stage1"}]
+                },
+                {
+                    "when": {"age": 1},
+                    "apply": [{"model": "block/f_%name%_stage1"}]
+                },
+                {
+                    "when": {"age": 2},
+                    "apply": [{"model": "block/%name%_stage2"}]
+                },
+                {
+                    "when": {"age": 2},
+                    "apply": [{"model": "block/f_%name%_stage2"}]
+                },
+                {
+                    "when": {"age": 3},
+                    "apply": [{"model": "block/%name%_stage3"}]
+                },
+                {
+                    "when": {"age": 3},
+                    "apply": [{"model": "block/f_%name%_stage3"}]
+                }
             ]
         }
     }
