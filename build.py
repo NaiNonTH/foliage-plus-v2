@@ -2,6 +2,7 @@ import os
 import json
 import shutil
 import utils
+import re
 
 from string import Template
 
@@ -18,13 +19,12 @@ if __name__ == "__main__":
     shutil.copytree("templates/models", "pack/assets/minecraft/models/templates")
     shutil.copyfile("templates/pack.mcmeta", "pack/pack.mcmeta")
 
-    template_files = os.listdir("templates/models")
-
     with open("structure.json", "r") as file:
         structure = json.load(file)
 
-    for template in template_files:
-        template_name = utils.get_file_name(template)
+    templates = structure.keys()
+
+    for template_name in templates:
         local_structure = structure[template_name]
 
         if "all" in local_structure:
@@ -34,27 +34,34 @@ if __name__ == "__main__":
 
         blocks = local_structure.get("blocks", [])
 
-        model = model_structure.get("model", None)
+        models = model_structure.get("models", None)
         blockstate = model_structure.get("blockstate", None)
 
+        print(blocks)
+
         for block in blocks:
-            if type(model) == str:
-                model = structure[model]["model"]
-                
-            if model is not None:
-                model_template = Template(json.dumps(model["template"])).substitute(template=template_name, name=block)
-                model_name = Template(model.get("name", block)).substitute(template=template_name, name=block)
+            if type(models) == str:
+                models = structure[models]["models"]
+
+            if type(models) == dict:
+                if models is not None:
+                    model_name, model_template = utils.render_name_and_template(models, template=template_name, name=block, block=block)
+
+                    with open(f"pack/assets/minecraft/models/block/f_{model_name}.json", "w") as writer:
+                        writer.write(model_template)
+
+            elif type(models) == list:
+                for model in models:
+                    model_name, model_template = utils.render_name_and_template(model, template=template_name, name=block, block=block)
+
+                    with open(f"pack/assets/minecraft/models/block/f_{model_name}.json", "w") as writer:
+                        writer.write(model_template)
 
             if type(blockstate) == str:
                 blockstate = structure[blockstate]["blockstate"]
-            elif blockstate is not None:
-                blockstate_template = Template(json.dumps(blockstate))
-
-            if model is not None:
-                with open(f"pack/assets/minecraft/models/block/f_{model_name}.json", "w") as writer:
-                    writer.write(model_template)
 
             if blockstate is not None:
+                blockstate_template = Template(json.dumps(blockstate))
                 block_blockstate_template = blockstate_template.substitute(template=template_name, name=block)
 
                 with open(f"pack/assets/minecraft/blockstates/{block}.json", "w") as writer:

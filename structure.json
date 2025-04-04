@@ -1,17 +1,17 @@
 {
     "bowl": {
-        "model": {
+        "models": {
             "template": {
-                "parent": "templates/$template",
+                "parent": "templates/%template%",
                 "textures": {
-                    "0": "block/$name"
+                    "0": "block/%name%"
                 }
             }
         },
         "blockstate": {
             "multipart": [
-                {"apply": [{"model": "block/$name"}]},
-                {"apply": [{"model": "block/f_$name"}]}
+                {"apply": [{"model": "block/%name%"}]},
+                {"apply": [{"model": "block/f_%name%"}]}
             ]
         },
         "blocks": [
@@ -26,7 +26,7 @@
         ]
     },
     "flowers": {
-        "model": "bowl",
+        "models": "bowl",
         "blocks": [
             "dandelion",
             "poppy",
@@ -43,21 +43,21 @@
         ],
         "blockstate": {
             "multipart": [
-                {"apply": [{"model": "block/$name"}]},
+                {"apply": [{"model": "block/%name%"}]},
                 {"apply": [
-                    {"model": "block/f_$name"},
+                    {"model": "block/f_%name%"},
                     {"model": "block/air", "weight": 2}
                 ]},
                 {"apply": [
-                    {"model": "block/f_$name", "y": 90},
+                    {"model": "block/f_%name%", "y": 90},
                     {"model": "block/air", "weight": 3}
                 ]},
                 {"apply": [
-                    {"model": "block/f_$name", "y": 180},
+                    {"model": "block/f_%name%", "y": 180},
                     {"model": "block/air", "weight": 4}
                 ]},
                 {"apply": [
-                    {"model": "block/f_$name", "y": 270},
+                    {"model": "block/f_%name%", "y": 270},
                     {"model": "block/air", "weight": 5}
                 ]}
             ]
