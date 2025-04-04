@@ -40,7 +40,8 @@ if __name__ == "__main__":
         for block in blocks:
             if type(model) == str:
                 model = structure[model]["model"]
-            elif model is not None:
+                
+            if model is not None:
                 model_template = Template(json.dumps(model["template"])).substitute(template=template_name, name=block)
                 model_name = Template(model.get("name", block)).substitute(template=template_name, name=block)
 
