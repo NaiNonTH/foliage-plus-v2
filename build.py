@@ -2,9 +2,6 @@ import os
 import json
 import shutil
 import utils
-import re
-
-from string import Template
 
 if __name__ == "__main__":
     try:
