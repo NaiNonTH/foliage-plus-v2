@@ -10,10 +10,15 @@ if __name__ == "__main__":
     dest_args = arg_parser.parse_args()
     
     if dest_args.destination is None:
-        print("Please provide destination path using -d or --destination.")
-        quit(1)
-    
-    DEST_DIR = dest_args.destination
+        try:
+            with open("dest_dir.txt", "r") as ddir:
+                DEST_DIR = ddir.read()
+        except FileNotFoundError:
+            print("Cannot find \"dest_dir.txt\" file")
+            exit(1)
+    else:
+        DEST_DIR = dest_args.destination
+
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     
     shutil.rmtree(os.path.join(DEST_DIR, "Foliage+"))
